@@ -20,7 +20,7 @@ public class WorldRenderer {
 
     public void render(float delta) {
         SpriteBatch batch = snowballGame.batch;
-        Vector2 pos = world.getPacman().getPosition();
+        Vector2 pos = world.getPlayer().getPosition();
         batch.begin();
         batch.draw(playerImg, pos.x - BLOCK_SIZE/2,
                 SnowballGame.HEIGHT - pos.y - BLOCK_SIZE/2);
