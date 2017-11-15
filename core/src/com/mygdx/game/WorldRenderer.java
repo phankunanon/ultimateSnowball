@@ -9,21 +9,23 @@ public class WorldRenderer {
     private SnowballGame snowballGame;
     private World world;
     private Texture playerImg;
-    public static final int BLOCK_SIZE = 40;
+    private Texture rocketImg;
 
     public WorldRenderer(SnowballGame snowballGame, World world) {
         this.snowballGame = snowballGame;
         batch = snowballGame.batch;
         this.world = world;
         playerImg = new Texture("player.png");
+        rocketImg = new Texture("rocket.png");
     }
 
     public void render(float delta) {
         SpriteBatch batch = snowballGame.batch;
         Vector2 pos = world.getPlayer().getPosition();
+        //Vector2 rockPos = world.getRocket().getPosition();
         batch.begin();
-        batch.draw(playerImg, pos.x - BLOCK_SIZE/2,
-                SnowballGame.HEIGHT - pos.y - BLOCK_SIZE/2);
+        batch.draw(playerImg, pos.x ,pos.y);
+        //batch.draw(rocketImg,rockPos.x,rockPos.y);
         batch.end();
     }
 }

@@ -8,22 +8,21 @@ public class Player {
 
     public static final int DIRECTION_UP = 1;
     public static final int DIRECTION_DOWN = 2;
-    public static final int DIRECTION_STILL = 0;
-    private static final int [] DIR_OFFSETS = new int [] {1,2,3};
+    private static final int [] DIR_OFFSETS = new int [] {1,3,5};
 
     private static int positionStatus;
     private World world;
-    public static final int POSITION = 200;
+    public static final int POSITION = 100;
     public void move() {
         position.y = POSITION * DIR_OFFSETS[positionStatus];
     }
 
     public void setNextDirection(int dir) {
         if (dir == DIRECTION_UP){
-            positionStatus --;
+            positionStatus ++;
         }
         else if(dir == DIRECTION_DOWN){
-            positionStatus++;
+            positionStatus--;
         }
         if(positionStatus >= 3) positionStatus=2;
         if(positionStatus <0) positionStatus = 0;
@@ -43,4 +42,7 @@ public class Player {
         return position;
     }
 
+    public void shoot() {
+
+    }
 }

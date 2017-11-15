@@ -39,6 +39,9 @@ public class GameScreen extends ScreenAdapter {
         else if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
             player.setNextDirection(Player.DIRECTION_DOWN);
         }
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+            player.shoot();
+        }
     }
 
 }
