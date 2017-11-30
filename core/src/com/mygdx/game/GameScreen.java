@@ -18,14 +18,16 @@ public class GameScreen extends ScreenAdapter {
         world = new World(snowballGame);
         worldRenderer = new WorldRenderer(snowballGame,world);
     }
+
     private void update(float delta) {
         updatePlayerDirection();
         world.update(delta);
     }
+
     public void render(float delta) {
         update(delta);
 
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 0.1f, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         worldRenderer.render(delta);
@@ -40,7 +42,10 @@ public class GameScreen extends ScreenAdapter {
             player.setNextDirection(Player.DIRECTION_DOWN);
         }
         else if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-            player.shoot();
+            world.genRocket(player.getPosition());
+        }
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.C)){
+            player.status(1);
         }
     }
 
