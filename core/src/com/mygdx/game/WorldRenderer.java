@@ -30,7 +30,8 @@ public class WorldRenderer {
 
     public void render(float delta) {
         SpriteBatch batch = snowballGame.batch;
-        Vector2 pos = world.getPlayer().getPosition();
+        Vector2 pos1 = world.getPlayer().getPosition();
+        Vector2 pos2 = world.getPlayer2().getPosition();
         Vector2 rockPos;
         player = world.getPlayer();
         player2 = world.getPlayer2();
@@ -44,18 +45,25 @@ public class WorldRenderer {
             int x = player.transform;
             switch (x) {
                 case 0:
-                    batch.draw(playerImg, pos.x, pos.y);
+                    batch.draw(playerImg, pos1.x, pos1.y);
                     break;
                 case 1:
-                    batch.draw(bungerplayerImg, pos.x, pos.y);
+                    batch.draw(bungerplayerImg, pos1.x, pos1.y);
                     break;
             }
         }
-
-        pos = player2.getPosition();
-        System.out.println(player2.getDeath());
-        if(!player2.getDeath())
-            batch.draw(playerImg,pos.x,pos.y);
+        //if(!player2.getDeath())
+        {
+            int x = player2.transform;
+            switch (x) {
+                case 0:
+                    batch.draw(playerImg, pos2.x, pos2.y);
+                    break;
+                case 1:
+                    batch.draw(bungerplayerImg, pos2.x, pos2.y);
+                    break;
+            }
+        }
 
         List<Rocket> rock = world.getRocket();
         for(int i = 0 ;i < world.getcntRocket();i++){

@@ -7,31 +7,31 @@ import static java.lang.Math.abs;
 public class Player {
 
     private Vector2 position;
-    public static int transform = 0;
+    public int transform = 0;
     public static final int DIRECTION_UP = 1;
     public static final int DIRECTION_DOWN = 2;
-    public static int countShoot = 0;
+    public int countShoot = 0;
     private static final int [] DIR_OFFSETS = new int [] {1,3,5};
 
-    private static int positionStatus;
+    private int positionStatus;
     private World world;
     private Rocket rocket;
-    private static boolean death = false;
+    private boolean death = false;
     public static final int POSITION = 100;
 
     public void move() {
-        position.y = POSITION * DIR_OFFSETS[positionStatus];
+        this.position.y = POSITION * DIR_OFFSETS[positionStatus];
     }
 
     public void setNextDirection(int dir) {
         if (dir == DIRECTION_UP){
-            positionStatus ++;
+            this.positionStatus ++;
         }
         else if(dir == DIRECTION_DOWN){
-            positionStatus--;
+            this.positionStatus--;
         }
-        if(positionStatus >= 3) positionStatus=2;
-        if(positionStatus <0) positionStatus = 0;
+        if(this.positionStatus >= 3) this.positionStatus=2;
+        if(this.positionStatus <0) this.positionStatus = 0;
         return;
     }
 
@@ -46,12 +46,12 @@ public class Player {
     }
 
     public Player(int x, int y, World world) {
-        position = new Vector2(x,y);
+        this.position = new Vector2(x,y);
         this.world = world;
     }
 
     public Vector2 getPosition() {
-        return position;
+        return this.position;
     }
 
     public boolean canShoot(int cnt) {

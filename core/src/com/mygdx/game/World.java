@@ -8,25 +8,29 @@ import java.util.List;
 public class World {
 
     private Player player;
-    private Player testplayer;
+    private Player player2;
     private SnowballGame snowballGame;
     private List<Rocket> rockets = new ArrayList<Rocket>();
     World(SnowballGame snowballGame) {
         this.snowballGame = snowballGame;
         player = new Player(120,0,this);
-        testplayer = new Player(500,100,this);
+        player2 = new Player(500,100,this);
     }
 
     Player getPlayer() {
         return player;
     }
     Player getPlayer2() {
-        return testplayer;
+        return player2;
     }
 
-    public void genRocket(Vector2 pos){
+    public void genRocket(Vector2 pos,int whoshoot){
         Rocket rock;
-        if(player.shoot()) {
+        if(player.shoot() && whoshoot == 1) {
+            rock = new Rocket(pos.x+40, pos.y, this);
+            rockets.add(rock);
+        }
+        if(player2.shoot() && whoshoot == 2) {
             rock = new Rocket(pos.x+40, pos.y, this);
             rockets.add(rock);
         }
@@ -35,7 +39,7 @@ public class World {
 
         for (int i = 0;i<rockets.size();i++) {
             rockets.get(i).update();
-            testplayer.checkDeath(rockets.get(i).getPosition());
+            player2.checkDeath(rockets.get(i).getPosition());
             player.checkDeath(rockets.get(i).getPosition());
             boolean chdel = rockets.get(i).checkStatus();
             if(chdel){
@@ -43,6 +47,7 @@ public class World {
             }
         }
         player.update();
+        player2.update();
     }
     public int getcntRocket(){
         return rockets.size();

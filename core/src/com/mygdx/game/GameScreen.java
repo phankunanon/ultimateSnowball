@@ -14,7 +14,6 @@ public class GameScreen extends ScreenAdapter {
 
     public GameScreen(SnowballGame snowballGame) {
         this.snowballGame = snowballGame;
-        playerImg = new Texture("player.png");
         world = new World(snowballGame);
         worldRenderer = new WorldRenderer(snowballGame,world);
     }
@@ -35,18 +34,36 @@ public class GameScreen extends ScreenAdapter {
 
     private void updatePlayerDirection() {
         Player player = world.getPlayer();
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+        Player player2 = world.getPlayer2();
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.W)) {
             player.setNextDirection(Player.DIRECTION_UP);
         }
-        else if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.S)) {
             player.setNextDirection(Player.DIRECTION_DOWN);
         }
-        else if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-            world.genRocket(player.getPosition());
+        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+            world.genRocket(player.getPosition(),1);
         }
-        else if(Gdx.input.isKeyJustPressed(Input.Keys.C)){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.C)){
             player.status(1);
         }
+
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+            player2.setNextDirection(Player.DIRECTION_UP);
+        }
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
+            player2.setNextDirection(Player.DIRECTION_DOWN);
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.V)) {
+            world.genRocket(player2.getPosition(),2);
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.L)){
+            player2.status(1);
+        }
+
+
     }
 
 }

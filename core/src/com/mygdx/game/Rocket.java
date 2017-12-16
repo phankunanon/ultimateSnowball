@@ -6,15 +6,16 @@ public class Rocket {
     private static final int SPEED = 13;
     private SnowballGame snowballGame;
     private World world;
-    private Player player;
+    private Player player = world.getPlayer();
+    private Player player2 = world.getPlayer2();
     public Vector2 position;
 
     public void move() {
-        position.x += SPEED;
+        this.position.x += SPEED;
     }
 
     public Rocket(float x, float y, World world) {
-        position = new Vector2(x,y);
+        this.position = new Vector2(x,y);
         this.world = world;
     }
     public void update() {
@@ -23,8 +24,12 @@ public class Rocket {
 
     public boolean checkStatus(){
         Vector2 pos = getPosition();
-        if(pos.x >= snowballGame.WIDTH || pos.y >= snowballGame.HEIGHT){
+        if(pos.x >= snowballGame.WIDTH){
             player.countShoot--;
+            return true;
+        }
+        if(pos.x <= 0){
+            player2.countShoot--;
             return true;
         }
         return false;
