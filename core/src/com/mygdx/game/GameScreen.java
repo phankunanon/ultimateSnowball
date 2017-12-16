@@ -25,7 +25,6 @@ public class GameScreen extends ScreenAdapter {
 
     public void render(float delta) {
         update(delta);
-
         Gdx.gl.glClearColor(0, 0.1f, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -35,32 +34,32 @@ public class GameScreen extends ScreenAdapter {
     private void updatePlayerDirection() {
         Player player = world.getPlayer();
         Player player2 = world.getPlayer2();
+        if(!player.getDeath()) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.W)) {
+                player.setNextDirection(Player.DIRECTION_UP);
+            } else if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
+                player.setNextDirection(Player.DIRECTION_DOWN);
+            }
+            if (Gdx.input.isKeyJustPressed(Input.Keys.V)) {
+                world.genRocket(player.getPosition(), 1);
+            }
+            if (Gdx.input.isKeyJustPressed(Input.Keys.C)) {
+                player.status(1);
+            }
+        }
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.W)) {
-            player.setNextDirection(Player.DIRECTION_UP);
-        }
-        else if(Gdx.input.isKeyJustPressed(Input.Keys.S)) {
-            player.setNextDirection(Player.DIRECTION_DOWN);
-        }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-            world.genRocket(player.getPosition(),1);
-        }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.C)){
-            player.status(1);
-        }
-
-
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            player2.setNextDirection(Player.DIRECTION_UP);
-        }
-        else if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
-            player2.setNextDirection(Player.DIRECTION_DOWN);
-        }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.V)) {
-            world.genRocket(player2.getPosition(),2);
-        }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.L)){
-            player2.status(1);
+        if(!player2.getDeath()) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+                player2.setNextDirection(Player.DIRECTION_UP);
+            } else if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
+                player2.setNextDirection(Player.DIRECTION_DOWN);
+            }
+            if (Gdx.input.isKeyJustPressed(Input.Keys.K)) {
+                world.genRocket(player2.getPosition(), 2);
+            }
+            if (Gdx.input.isKeyJustPressed(Input.Keys.L)) {
+                player2.status(1);
+            }
         }
 
 

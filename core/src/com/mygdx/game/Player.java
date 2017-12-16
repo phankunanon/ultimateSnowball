@@ -64,8 +64,8 @@ public class Player {
     }
 
     public boolean shoot() {
-        if(canShoot(countShoot)) {
-            countShoot++;
+        if(canShoot(this.countShoot)) {
+            this.countShoot++;
             return true;
         }
         return false;
@@ -76,16 +76,8 @@ public class Player {
     }
 
     public void checkDeath(Vector2 rockpos){
-        System.out.println("CHHHHH");
-        System.out.print(rockpos.x);
-        System.out.print("\t");
-        System.out.println(rockpos.y);
-        System.out.print(position.x);
-        System.out.print("\t");
-        System.out.print(position.y);
-        if (abs(position.x -rockpos.x) <= 30 && position.y == rockpos.y){
-
-            death = true;
+        if (abs(position.x -rockpos.x) <= 30 && this.position.y == rockpos.y){
+            this.death = true;
         }
     }
 }

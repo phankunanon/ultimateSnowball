@@ -40,7 +40,7 @@ public class WorldRenderer {
         batch.draw(background,0,0,snowballGame.WIDTH,snowballGame.HEIGHT);
 
 
-        //if(!player.getDeath())
+        if(!player.getDeath())
         {
             int x = player.transform;
             switch (x) {
@@ -52,7 +52,7 @@ public class WorldRenderer {
                     break;
             }
         }
-        //if(!player2.getDeath())
+        if(!player2.getDeath())
         {
             int x = player2.transform;
             switch (x) {
@@ -66,7 +66,7 @@ public class WorldRenderer {
         }
 
         List<Rocket> rock = world.getRocket();
-        for(int i = 0 ;i < world.getcntRocket();i++){
+        for(int i = 0 ;i < rock.size();i++){
             rockPos = rock.get(i).getPosition();
             batch.draw(rocketImg,rockPos.x,rockPos.y);
         }

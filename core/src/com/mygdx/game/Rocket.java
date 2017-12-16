@@ -4,19 +4,22 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Rocket {
     private static final int SPEED = 13;
+    public int who = 0;
     private SnowballGame snowballGame;
     private World world;
-    private Player player = world.getPlayer();
-    private Player player2 = world.getPlayer2();
     public Vector2 position;
 
     public void move() {
-        this.position.x += SPEED;
+        if (who==2)
+            this.position.x -= SPEED;
+        else
+            this.position.x += SPEED;
     }
 
-    public Rocket(float x, float y, World world) {
+    public Rocket(float x, float y, World world,int whoshoot) {
         this.position = new Vector2(x,y);
         this.world = world;
+        this.who = whoshoot;
     }
     public void update() {
         move();
@@ -24,18 +27,13 @@ public class Rocket {
 
     public boolean checkStatus(){
         Vector2 pos = getPosition();
-        if(pos.x >= snowballGame.WIDTH){
-            player.countShoot--;
-            return true;
-        }
-        if(pos.x <= 0){
-            player2.countShoot--;
+        if(pos.x >= snowballGame.WIDTH || pos.x <=0){
             return true;
         }
         return false;
     }
 
     public Vector2 getPosition() {
-        return position;
+        return this.position;
     }
 }
