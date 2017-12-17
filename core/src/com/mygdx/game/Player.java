@@ -13,6 +13,8 @@ public class Player {
     public int countShoot = 0;
     private static final int [] DIR_OFFSETS = new int [] {1,3,5};
 
+    public int hp = 5;
+
     private int positionStatus;
     private World world;
     private Rocket rocket;
@@ -75,9 +77,17 @@ public class Player {
         return death;
     }
 
-    public void checkDeath(Vector2 rockpos){
-        if (abs(position.x -rockpos.x) <= 30 && this.position.y == rockpos.y){
-            this.death = true;
+    public boolean checkDeath(Vector2 rockpos) {
+        if (abs(position.x - rockpos.x) <= 30 && this.position.y == rockpos.y && hp > 0) {
+            this.hp--;
+
+            if (this.hp <= 0) {
+                this.death = true;
+            }
+
+            return true;
         }
+        return false;
     }
 }
+

@@ -52,6 +52,7 @@ public class WorldRenderer {
                     break;
             }
         }
+
         if(!player2.getDeath())
         {
             int x = player2.transform;

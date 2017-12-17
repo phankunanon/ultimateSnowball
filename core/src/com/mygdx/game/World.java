@@ -47,10 +47,11 @@ public class World {
         System.out.println(player2.countShoot);
         for (int i = 0;i<rockets.size();i++) {
             rockets.get(i).update();
-            player2.checkDeath(rockets.get(i).getPosition());
-            player.checkDeath(rockets.get(i).getPosition());
+            boolean chcol = false;
+            chcol = chcol | player2.checkDeath(rockets.get(i).getPosition());
+            chcol = chcol |player.checkDeath(rockets.get(i).getPosition());
             boolean chdel = rockets.get(i).checkStatus();
-            if(chdel){
+            if(chdel || chcol){
                 playerlist.get(rockets.get(i).who-1).countShoot--;
                 rockets.remove(i);
             }
