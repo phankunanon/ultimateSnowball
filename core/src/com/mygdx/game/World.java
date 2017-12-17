@@ -40,11 +40,9 @@ public class World {
     }
 
     public void update(float delta) {
-
-        System.out.print("Player1 : ");
-        System.out.println(player.countShoot);
-        System.out.print("Player2 : ");
-        System.out.println(player2.countShoot);
+        if(player.getDeath()||player2.getDeath()){
+            rockets.clear();
+        }
         for (int i = 0;i<rockets.size();i++) {
             rockets.get(i).update();
             boolean chcol = false;

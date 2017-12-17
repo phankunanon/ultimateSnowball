@@ -93,9 +93,20 @@ public class WorldRenderer {
         String statusPl2 = "x"+player2.canTransfrom;
         batch.draw(snowmanStatusImg,snowmanStatusPos.x,snowmanStatusPos.y);
         font.setColor(Color.BLACK);
+        font.getData().setScale(1.5f);
         font.draw(batch,statusPl1,snowmanStatusPos.x*2+30,snowmanStatusPos.y*2);
         batch.draw(snowmanStatusImg,snowballGame.WIDTH-(snowmanStatusPos.x)*5,snowmanStatusPos.y);
         font.draw(batch,statusPl2,snowballGame.WIDTH-(snowmanStatusPos.x*4)+30,snowmanStatusPos.y*2);
+
+        if(player.getDeath()){
+            font.draw(batch,"PLAYER1 so NOOB",snowballGame.WIDTH*2.3f/5,snowballGame.HEIGHT/2);
+            font.draw(batch,"Press ESC to Close this Window",snowballGame.WIDTH*2.3f/5-50,snowballGame.HEIGHT/2-30);
+        }
+        else if(player2.getDeath()){
+            font.draw(batch,"PLAYER2 so NOOB",snowballGame.WIDTH*2.3f/5,snowballGame.HEIGHT/2);
+            font.draw(batch,"Press ESC to Close this Window",snowballGame.WIDTH*2.3f/5-50,snowballGame.HEIGHT/2-30);
+        }
+
         batch.end();
     }
 }

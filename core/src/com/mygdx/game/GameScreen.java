@@ -32,7 +32,7 @@ public class GameScreen extends ScreenAdapter {
     private void updatePlayerDirection() {
         Player player = world.getPlayer();
         Player player2 = world.getPlayer2();
-        if(!player.getDeath()) {
+        if(!player.getDeath()||!player2.getDeath()) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.W)) {
                 player.setNextDirection(Player.DIRECTION_UP);
             } else if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
@@ -44,9 +44,7 @@ public class GameScreen extends ScreenAdapter {
             if (Gdx.input.isKeyJustPressed(Input.Keys.C)) {
                 player.status(1);
             }
-        }
 
-        if(!player2.getDeath()) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
                 player2.setNextDirection(Player.DIRECTION_UP);
             } else if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
@@ -57,6 +55,12 @@ public class GameScreen extends ScreenAdapter {
             }
             if (Gdx.input.isKeyJustPressed(Input.Keys.L)) {
                 player2.status(1);
+            }
+        }
+
+        if(player.getDeath()||player2.getDeath()) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+                System.exit(1);
             }
         }
 
