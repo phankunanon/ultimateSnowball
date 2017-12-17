@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import javax.xml.soap.Text;
 import java.util.List;
 
+
 public class WorldRenderer {
     private SpriteBatch batch;
     private SnowballGame snowballGame;
@@ -18,6 +19,9 @@ public class WorldRenderer {
     private Texture rocketImg;
     private Texture background;
     private Texture bungerplayerImg;
+    private Texture heartImg;
+    private int scr[] = {80,120,160,200,240};
+    private int hpY = 650;
     public WorldRenderer(SnowballGame snowballGame, World world) {
         this.snowballGame = snowballGame;
         batch = snowballGame.batch;
@@ -26,6 +30,7 @@ public class WorldRenderer {
         rocketImg = new Texture("rocket.png");
         background = new Texture("bgsnow.jpg");
         bungerplayerImg = new Texture("bunger1.png");
+        heartImg = new Texture ("hearts.png");
     }
 
     public void render(float delta) {
@@ -38,7 +43,6 @@ public class WorldRenderer {
         batch.begin();
 
         batch.draw(background,0,0,snowballGame.WIDTH,snowballGame.HEIGHT);
-
 
         if(!player.getDeath())
         {
@@ -70,6 +74,13 @@ public class WorldRenderer {
         for(int i = 0 ;i < rock.size();i++){
             rockPos = rock.get(i).getPosition();
             batch.draw(rocketImg,rockPos.x,rockPos.y);
+        }
+
+        for(int i = 0;i< player.hp;i++){
+            batch.draw(heartImg,scr[i],hpY);
+        }
+        for(int i = 0;i< player2.hp;i++){
+            batch.draw(heartImg,snowballGame.WIDTH-scr[i],hpY);
         }
         batch.end();
     }
