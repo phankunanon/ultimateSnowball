@@ -14,6 +14,7 @@ public class Player {
     private static final int [] DIR_OFFSETS = new int [] {1,3,5};
 
     public int hp = 5;
+    public int canTransfrom = 5;
 
     private int positionStatus;
     private World world;
@@ -27,19 +28,25 @@ public class Player {
 
     public void setNextDirection(int dir) {
         if (dir == DIRECTION_UP){
-            this.positionStatus ++;
+            positionStatus ++;
         }
         else if(dir == DIRECTION_DOWN){
-            this.positionStatus--;
+            positionStatus--;
         }
-        if(this.positionStatus >= 3) this.positionStatus=2;
-        if(this.positionStatus <0) this.positionStatus = 0;
+        if(positionStatus >= 3) positionStatus=2;
+        if(positionStatus <0) positionStatus = 0;
         return;
     }
 
     public void status(int x){
+        if(canTransfrom == 0){
+            return;
+        }
         transform += x;
         transform %= 2;
+        if(transform == 0){
+            canTransfrom--;
+        }
         return ;
     }
 
@@ -48,12 +55,12 @@ public class Player {
     }
 
     public Player(int x, int y, World world) {
-        this.position = new Vector2(x,y);
+        position = new Vector2(x,y);
         this.world = world;
     }
 
     public Vector2 getPosition() {
-        return this.position;
+        return position;
     }
 
     public boolean canShoot(int cnt) {
@@ -66,8 +73,8 @@ public class Player {
     }
 
     public boolean shoot() {
-        if(canShoot(this.countShoot)) {
-            this.countShoot++;
+        if(canShoot(countShoot)) {
+            countShoot++;
             return true;
         }
         return false;
@@ -78,11 +85,12 @@ public class Player {
     }
 
     public boolean checkDeath(Vector2 rockpos) {
-        if (abs(position.x - rockpos.x) <= 30 && this.position.y == rockpos.y && hp > 0) {
-            this.hp--;
-
-            if (this.hp <= 0) {
-                this.death = true;
+        if (abs(position.x - rockpos.x) <= 30 && position.y == rockpos.y && hp > 0) {
+            if(transform==0){
+                hp--;
+            }
+            if (hp <= 0) {
+                death = true;
             }
 
             return true;

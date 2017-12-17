@@ -1,7 +1,9 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
@@ -20,6 +22,7 @@ public class WorldRenderer {
     private Texture background;
     private Texture bungerplayerImg;
     private Texture heartImg;
+    private Texture snowmanStatusImg;
     private int scr[] = {80,120,160,200,240};
     private int hpY = 650;
     public WorldRenderer(SnowballGame snowballGame, World world) {
@@ -31,13 +34,17 @@ public class WorldRenderer {
         background = new Texture("bgsnow.jpg");
         bungerplayerImg = new Texture("bunger1.png");
         heartImg = new Texture ("hearts.png");
+        snowmanStatusImg = new Texture("snowman.png");
+
     }
 
     public void render(float delta) {
         SpriteBatch batch = snowballGame.batch;
+        BitmapFont font = new BitmapFont();
         Vector2 pos1 = world.getPlayer().getPosition();
         Vector2 pos2 = world.getPlayer2().getPosition();
         Vector2 rockPos;
+        Vector2 snowmanStatusPos = new Vector2(50,25);
         player = world.getPlayer();
         player2 = world.getPlayer2();
         batch.begin();
@@ -82,6 +89,13 @@ public class WorldRenderer {
         for(int i = 0;i< player2.hp;i++){
             batch.draw(heartImg,snowballGame.WIDTH-scr[i],hpY);
         }
+        String statusPl1 = "x"+player.canTransfrom;
+        String statusPl2 = "x"+player2.canTransfrom;
+        batch.draw(snowmanStatusImg,snowmanStatusPos.x,snowmanStatusPos.y);
+        font.setColor(Color.BLACK);
+        font.draw(batch,statusPl1,snowmanStatusPos.x*2+30,snowmanStatusPos.y*2);
+        batch.draw(snowmanStatusImg,snowballGame.WIDTH-(snowmanStatusPos.x)*5,snowmanStatusPos.y);
+        font.draw(batch,statusPl2,snowballGame.WIDTH-(snowmanStatusPos.x*4)+30,snowmanStatusPos.y*2);
         batch.end();
     }
 }
