@@ -89,6 +89,7 @@ public class WorldRenderer {
         for(int i = 0;i< player2.hp;i++){
             batch.draw(heartImg,snowballGame.WIDTH-scr[i],hpY);
         }
+
         String statusPl1 = "x"+player.canTransfrom;
         String statusPl2 = "x"+player2.canTransfrom;
         batch.draw(snowmanStatusImg,snowmanStatusPos.x,snowmanStatusPos.y);

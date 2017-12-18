@@ -38,7 +38,7 @@ public class GameScreen extends ScreenAdapter {
             } else if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
                 player.setNextDirection(Player.DIRECTION_DOWN);
             }
-            if (Gdx.input.isKeyJustPressed(Input.Keys.V)) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.D)) {
                 world.genRocket(player.getPosition(), 1);
             }
             if (Gdx.input.isKeyJustPressed(Input.Keys.C)) {
@@ -50,7 +50,7 @@ public class GameScreen extends ScreenAdapter {
             } else if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
                 player2.setNextDirection(Player.DIRECTION_DOWN);
             }
-            if (Gdx.input.isKeyJustPressed(Input.Keys.K)) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
                 world.genRocket(player2.getPosition(), 2);
             }
             if (Gdx.input.isKeyJustPressed(Input.Keys.L)) {
